@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="io.spring.infrastructure.mybatis.readservice.UserReadService">
     <select id="findByUsername" resultType="io.spring.application.data.UserData">
-        select * from users where username = #{username}
+        select id, email, username, bio, image from users where username = #{username}
     </select>
     <select id="findById" resultType="io.spring.application.data.UserData">
-        select * from users where id = #{id}
+        select id, email, username, bio, image from users where id = #{id}
     </select>
 </mapper>
