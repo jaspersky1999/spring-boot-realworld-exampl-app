@@ -9,6 +9,7 @@ import io.spring.core.user.User;
 import java.util.HashMap;
 import javax.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -53,8 +54,11 @@ public class ArticlesApi {
       @RequestParam(value = "favorited", required = false) String favoritedBy,
       @RequestParam(value = "author", required = false) String author,
       @AuthenticationPrincipal User user) {
-    return ResponseEntity.ok(
-        articleQueryService.findRecentArticles(
-            tag, author, favoritedBy, new Page(offset, limit), user));
+    return ResponseEntity.ok()
+        .header(HttpHeaders.CACHE_CONTROL, "no-store")
+        .header(HttpHeaders.VARY, "Authorization")
+        .body(
+            articleQueryService.findRecentArticles(
+                tag, author, favoritedBy, new Page(offset, limit), user));
   }
 }
