@@ -14,10 +14,8 @@ public class User {
   private String id;
   private String email;
   private String username;
-  
   @JsonIgnore
   private String password;
-  
   private String bio;
   private String image;
 
