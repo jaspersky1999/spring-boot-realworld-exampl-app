@@ -1,5 +1,6 @@
 package io.spring.core.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.spring.Util;
 import java.util.UUID;
 import lombok.EqualsAndHashCode;
@@ -13,7 +14,7 @@ public class User {
   private String id;
   private String email;
   private String username;
-  private String password;
+  @JsonIgnore private String password;
   private String bio;
   private String image;
 
